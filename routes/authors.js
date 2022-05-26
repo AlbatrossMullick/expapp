@@ -7,7 +7,6 @@ const Author = require('../models/author')
 // All authors route
 router.get('/', async (req,res) => {
     let searchOption = {}
-    console.log(searchOption)
     if(req.query.name != null && req.query.name !== ''){
         searchOption.name = new RegExp(req.query.name, 'i')
     }
@@ -20,9 +19,7 @@ router.get('/', async (req,res) => {
     )
 }
     catch{
-        res.redirect('/',{
-            errorMessage: 'Error Showing author'
-            })
+        res.redirect('/')
         }   
 })
 
