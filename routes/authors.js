@@ -1,22 +1,19 @@
 const express = require('express')
-const author = require('../models/author')
-// const author = require('../models/author')
 const router = express.Router()
 const Author = require('../models/author')
 
 // All authors route
 router.get('/', async (req,res) => {
-    let searchOption = {}
+    let searchOptions = {}
     if(req.query.name != null && req.query.name !== ''){
-        searchOption.name = new RegExp(req.query.name, 'i')
+        searchOptions.name = new RegExp(req.query.name, 'i')
     }
     try{
-    const authors = await Author.find(searchOption)
+    const authors = await Author.find(searchOptions)
     res.render('authors/index',{
         authors: authors,
-        searchOption: req.query
-    }
-    )
+        searchOptions: req.query
+    })
 }
     catch{
         res.redirect('/')
@@ -31,7 +28,6 @@ router.get('/new', (req,res) =>{
 })
 // Create author route
 router.post('/',async (req,res) =>{
-
     const author= new  Author({
         name: req.body.name
     }) 
@@ -43,7 +39,7 @@ try{
 catch {
     res.render('authors/new',{
         author:author,
-        errorMessage: 'Error creating author'
+        errorMessage: 'Please define a valid Author Name'
     })
 }
 

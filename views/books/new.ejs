@@ -1,8 +1,8 @@
-<H1>New Author</H1>
-<form action="/authors" method="POST">
+<H1>New Book</H1>
+<form action="/books" method="POST" enctype="multipart/form-data">
 
     <%- include('./_form_fields.ejs') %>  
-    <a href="/authors">Cancell</a>
+    <a href="/books">Cancell</a>
     <button type="submit">Create</button>
 </form>
 <h3><%- include('../partials/errorMessage.ejs') %></h3>
